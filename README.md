@@ -37,7 +37,7 @@ Before using PlasmidCommunity, ensure that you have the following prerequisites 
 To display the specific parameters and usage of the software, navigate to the directory containing the plasmid sequences and enter the following command:
 
 ```bash
-$ ./2.silhouetteCurve.sh -h
+$ ./PlasmidCommunity/silhouetteCurve.sh -h
 ```
 
 This command will provide detailed information on how to use the Silhouette Coefficient module and its parameters.
@@ -47,19 +47,19 @@ This command will provide detailed information on how to use the Silhouette Coef
 The Silhouette Coefficient module is used to analyze the clustering quality of plasmid communities. To run this module, use the following command:
 
 ```bash
-$ ./2.silhouetteCurve.sh --fastani "./fastani_output.txt" --output_tag test
+$ ./PlasmidCommunity/silhouetteCurve.sh --fastani "./fastani_output.txt" --output_tag test
 ```
 
 **Parameters**:  
-- `--fastani`: The absolute path to the folder containing the plasmid sequences analyzed using FastANI.  
+- `--fastani`: The absolute path to the file containing the result FastANI.  
 - `--output_tag`: The label for the output result files.  
 
-### 3. Obtaining Communities and Drawing Network Graphs
+### 3. Obtaining Communities and plotting the network
 
 To obtain plasmid communities, use the following command:
 
 ```bash
-$ ./3.getCommunity.sh --fastani "treedist" --discutoff 0.13 --membercutoff 5 --output_tag test
+$ ./PlasmidCommunity/getCommunity.sh --fastani "treedist" --discutoff 0.13 --membercutoff 5 --output_tag test
 ```
 
 **Parameters**:  
@@ -73,7 +73,7 @@ $ ./3.getCommunity.sh --fastani "treedist" --discutoff 0.13 --membercutoff 5 --o
 For pan-genome analysis, use the following command:
 
 ```bash
-$ ./4.pan.sh --plasmid_seq "./plasmids" --membership_info "./membership_info.txt" --membercutoff 5 --output_tag test
+$ ./PlasmidCommunity/pan.sh --plasmid_seq "./plasmids" --membership_info "./membership_info.txt" --membercutoff 5 --output_tag test
 ```
 
 **Parameters**:  
@@ -111,7 +111,7 @@ install.packages("readxl")
 ## Usage
 
 ```bash
-$ ./assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output_tag
+$ ./assignCommunity/assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output_tag
 ```
 
 **Parameters**:  
@@ -167,7 +167,7 @@ To classify a plasmid into one of two classes, set `modeltype="Binary"`. The scr
 **Example Command**:
 
 ```bash
-$ ./plasmidTransModel.sh -a inputGenome -o output_tag -m Binary
+$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output_tag -m Binary
 ```
 
 **Parameters**:  
@@ -189,7 +189,7 @@ To classify a plasmid into one of three classes, set `modeltype="ThreeClass"`. T
 **Example Command**:
 
 ```bash
-$ ./plasmidTransModel.sh -a inputGenome -o output_tag -m ThreeClass
+$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output_tag -m ThreeClass
 ```
 
 **Output**:  

@@ -42,5 +42,7 @@ do
     esac
 done
 #
-echo $forallplasmidPath,$forqueryPlasmidPath,$foroutput_tag
-Rscript assignCommunity.R $forallplasmidPath $forqueryPlasmidPath $foroutput_tag
+getbase=dirname $0
+Rscript ${getbase}/assignCommunity.R $forallplasmidPath $forqueryPlasmidPath $foroutput_tag
+
+

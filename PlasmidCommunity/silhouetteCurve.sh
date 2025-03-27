@@ -47,7 +47,6 @@ do
     esac
 done
 #
-echo $forfastani,$foroutput_tag
-#
-#Rscript cutoffselection.R 666 /home/micro/LZP/PanCoreSample/VCsample/VCtreef/parsnp.tree
-#Rscript cutoffselection.R $forfastani $foroutput_tag
+
+getbase=dirname $0
+Rscript ${getbase}/silhouetteCurve.R $forfastani $foroutput_tag

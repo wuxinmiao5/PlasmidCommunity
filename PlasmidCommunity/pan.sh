@@ -59,8 +59,6 @@ do
     esac
 done
 #
-echo $input_plasmid_seq,$input_membership,$formembercutoff,$foroutput_tag
-#
-#Rscript cutoffselection.R 666 /home/micro/LZP/PanCoreSample/VCsample/VCtreef/parsnp.tree
-Rscript pan.R $input_plasmid_seq $input_membership $membercutoff $outputtag
+getbase=dirname $0
+Rscript ${getbase}/pan.R $forinput_plasmid_seq $forinput_membership $formembercutoff $foroutput_tag
 

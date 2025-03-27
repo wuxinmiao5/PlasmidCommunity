@@ -9,7 +9,6 @@ library(seqinr)
 library(ggplot2)
 library(readxl)
 library(writexl)
-#setwd("/Users/wuxinmiao/Desktop")
 allparas=commandArgs()
 input_fastani=allparas[6]
 outputtag=allparas[7]
@@ -27,8 +26,6 @@ for(i in 1:nrow(aaa)){
   qq2=append(qq2,id2)
 }
 aaa0=data.frame(X1=qq,X2=qq2,X3=aaa$X3)
-#aaa01=spread(as.data.frame(aaa0),X2,X3)
-#aaa01=pivot_wider(as.data.frame(aaa0),names_from="X2",values_from="X3",values_fn=mean)
 uniquenames=basename(readLines("plasmids.txt"))
 aaa01=matrix(0, ncol=length(uniquenames),nrow=length(uniquenames))
   for(kkk in 1:dim(aaa0)[1]){
@@ -39,7 +36,6 @@ aaa01=matrix(0, ncol=length(uniquenames),nrow=length(uniquenames))
     aaa01[ck01,ck02]=aaa0$X3[kkk]
     aaa01[ck02,ck01]=aaa0$X3[kkk]
   }
-#treedist=aaa01%>%select(-X1)
 treedist=aaa01
 rownames(treedist)=uniquenames
 colnames(treedist)=uniquenames
@@ -59,8 +55,6 @@ for(zz in cutoffseq){
   treetemp[,]=0
   treetemp[treedist00<=cutoff]=1
   g=graph_from_adjacency_matrix(treetemp,mode="undirected",diag=FALSE)
-  #names(readmashup)=c("from","to","weight")
-  #g <- graph.data.frame(readmashup, directed=FALSE)
   imc=cluster_louvain(g)
   ccc=communities(imc)
   gnodes=V(g)$name
@@ -69,8 +63,6 @@ for(zz in cutoffseq){
   meanSILHOUETTE=c()
   if(length(uniquegroup)>1){
     for(eachgnode in gnodes){
-      #get node group
-      #找到每个点在矩阵的位置
       ckeachgnode=colnames(treedist)%in%eachgnode
       #找到每个点在网络中属于哪个社区
       nodegroup=ggroup[gnodes%in%eachgnode]
@@ -105,13 +97,6 @@ getoptimalindex=max(which(allSILHOUETTE==max(allSILHOUETTE)))
 getcutoff_core=cutoffvalues[getoptimalindex]
 #plot
 dataforplot=data.frame(cutoff=cutoffvalues,Silhouette=allSILHOUETTE)
-#save(dataforplot, file="dataforplot_0.70")
-#save(dataforplot, file="dataforplot_0.75")
-#save(dataforplot, file="dataforplot_0.80")
-#save(dataforplot, file="dataforplot_0.85")
-#save(dataforplot, file="dataforplot_0.90")
-#save(dataforplot, file="dataforplot_0.95")
-################################################################################################
 pdf(sprintf("Silhouette_curve_%s.pdf",outputtag))
 ddu=theme_classic() +
   theme(axis.text = element_text(size = 15, face = "bold", angle = 0)) +
