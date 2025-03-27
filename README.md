@@ -1,4 +1,3 @@
-```markdown
 # PlasmidCommunity: A Software Suite for Klebsiella pneumoniae Plasmid Classification Framework, Assignment, and Transmission Risk Prediction
 
 PlasmidCommunity is an open-source software suite designed to empower researchers in understanding Klebsiella pneumoniae plasmid biology through three analysis modules: classification, community assignment, and transmission risk prediction. Leveraging genomic similarity networks and advanced algorithms, this toolkit addresses critical challenges in tracking plasmid evolution, host interactions, and antimicrobial resistance dissemination.
