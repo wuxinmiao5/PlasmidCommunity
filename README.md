@@ -12,6 +12,37 @@ If you have any inquiries, questions, bug reports, or other feedback, please con
 We appreciate your feedback and are committed to improving PlasmidCommunity to better serve the research community.
 
 ---
+## Prerequisites
+
+Before using PlasmidCommunity, ensure that you have the following prerequisites installed and configured:
+
+### 1. System Requirements
+- **Linux Environment**: The software is designed to run on a Linux-based operating system. Familiarity with the Linux command line is required.
+
+### 2. R Environment 
+- **R Programming Language**: Install R on your system. Basic knowledge of R is necessary for certain parts of the analysis.
+- **Required R Packages**: Install the necessary R packages using the following commands: 
+```R
+install.packages(c("readr", "readxl", "tidymodels", "tidyverse", "Biostrings", "seqinr"))
+```
+
+### 3. External Tools
+- **FastANI**: Ensure fastANI is installed and accessible in your system’s PATH. It is used for sequence similarity analysis.
+- **Prodigal**: Install Prodigal for gene prediction. Download and install from Prodigal GitHub.
+- **BLAST**: Install BLAST for sequence alignment. Download and install from NCBI BLAST.
+
+### 4. Input Files
+-**Plasmid Sequences**: Prepare the plasmid sequences in FASTA format and place them in the appropriate directory (./plasmids).
+-**Pre-trained Models**: Ensure the following pre-trained models are available:
+`binaryModel.Rdata` for binary classification.
+`threeClassModel.Rdata` for three-class classification.
+-**Reference Protein Database**: Provide a reference protein database (model3.fasta) for BLAST analysis.
+
+### Key Notes:
+Ensure all tools are properly installed and accessible in your system’s PATH.
+Place all input files in the correct directories as specified in the documentation.
+
+---
 
 # PlasmidCommunity: Plasmid Community Classification and Analysis
 
@@ -21,14 +52,6 @@ PlasmidCommunity is a software designed for the classification and analysis of p
 
 The software is based on the methodology described in our paper, with minor modifications to enhance user-friendliness. For detailed information, please refer to the documentation.
 
-## Prerequisites
-
-Before using PlasmidCommunity, ensure that you have the following prerequisites installed and configured:
-
-- **Linux Environment**: The software is designed to run on a Linux-based operating system. Familiarity with the Linux command line is required.  
-- **R Programming Language**: Basic knowledge of R is necessary for certain parts of the analysis.  
-- **FastANI**: Ensure that FastANI is installed and properly configured, as it is used for sequence similarity analysis.  
-- **Plasmid Sequences**: Prepare the plasmid sequences in FASTA format and place them in the appropriate directory (`./plasmids`).  
 
 ## Usage
 
@@ -96,17 +119,6 @@ The tool performs the following steps:
 3. **Membership Assignment**: Identifies the plasmid with the highest ANI to the query and retrieves its community information.  
 4. **Output**: Generates a text file containing the query plasmid, the assigned community membership, and the size of the community.  
 
-## Prerequisites
-
-- **R**: Ensure R is installed on your system.  
-- **R Packages**: Install the required R packages using the following commands:  
-
-```R
-install.packages("readr")
-install.packages("readxl")
-```
-
-- **fastANI**: Ensure `fastANI` is installed and accessible in your system’s PATH.  
 
 ## Usage
 
@@ -137,24 +149,6 @@ This tool provides a framework for plasmid transmission risk prediction using ma
 
 The models leverage k-mer frequency analysis and gene feature extraction to predict plasmid classes based on genomic sequences. The models are built using the `tidymodels` framework in R, and the script integrates external tools like `Prodigal` and `BLAST` for gene feature extraction.
 
-## Prerequisites
-
-Before running the script, ensure the following prerequisites are met:  
-
-- **R Environment**: Install R and the required R packages:  
-
-```R
-install.packages(c("tidymodels", "tidyverse", "Biostrings", "seqinr"))
-```
-
-- **External Tools**:  
-  - **Prodigal**: Install Prodigal for gene prediction. Download and install from [Prodigal GitHub](https://github.com/hyattpd/Prodigal).  
-  - **BLAST**: Install BLAST for sequence alignment. Download and install from [NCBI BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  
-
-- **Input Files**:  
-  - A plasmid genome sequence in FASTA format (e.g., `GCA_015356015__CP064244.1.fasta`).  
-  - Pre-trained models (`binaryModel.Rdata` for binary classification and `threeClassModel.Rdata` for three-class classification).  
-  - A reference protein database (`model3.fasta`) for BLAST analysis.  
 
 ## Usage
 
@@ -194,4 +188,3 @@ $ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output_tag -m Three
 
 **Output**:  
 The prediction results will be saved in a file named `modelmerge_prediction_3class.txt`.
-```
