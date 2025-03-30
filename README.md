@@ -34,8 +34,8 @@ install.packages(c("readr", "readxl", "tidymodels", "tidyverse", "Biostrings", "
 ### 4. Input Files
 -**Plasmid Sequences**: Prepare the plasmid sequences in FASTA format and place them in the appropriate directory (./plasmids).
 -**Pre-trained Models**: Ensure the following pre-trained models are available:
-`binaryModel.Rdata` for binary classification.
-`threeClassModel.Rdata` for three-class classification.
+binaryModel.Rdata for binary classification.
+threeClassModel.Rdata for three-class classification.
 -**Reference Protein Database**: Provide a reference protein database (model3.fasta) for BLAST analysis.
 
 ### Key Notes:
