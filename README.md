@@ -109,9 +109,9 @@ $ ./PlasmidCommunity/pan.sh --plasmid_seq "./plasmids" --membership_info "./memb
 
 # assignCommunity: Plasmid Membership Assignment Tool
 
-The `assignCommunity` is a tool for assigning plasmid community of Klebsiella pneumoniae based on Average Nucleotide Identity (ANI) using the `fastANI` algorithm. The tool takes a query plasmid and compares it against a collection of known plasmids to determine the most similar plasmid and the community it belongs.
-
 ## Overview
+
+The `assignCommunity` is a tool for assigning plasmid community of Klebsiella pneumoniae based on Average Nucleotide Identity (ANI) using the `fastANI` algorithm. The tool takes a query plasmid and compares it against a collection of known plasmids to determine the most similar plasmid and the community it belongs.
 
 The tool performs the following steps:  
 1. **Input Handling**: Accepts paths to the query plasmid and a directory containing a collection of plasmids.  
@@ -139,9 +139,9 @@ Replace `/data/lizhenpeng/wuxinmiao/plasmids` with the path to the directory con
 
 # PlasmidTransModel: Plasmid Transmission Risk Prediction Models
 
-The `PlasmidTransModel` is a tool for Klebsiella pneumoniae plasmid transmission risk prediction using machine learning models.
-
 ## Overview
+
+The `PlasmidTransModel` is a tool for Klebsiella pneumoniae plasmid transmission risk prediction using machine learning models.
 
 This tool provides a framework for plasmid transmission risk prediction using machine learning models. It supports two types of classification:  
 1. **Binary Classification**: Distinguishing plasmids into two classes.  
