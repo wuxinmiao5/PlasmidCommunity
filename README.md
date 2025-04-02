@@ -123,7 +123,7 @@ The tool performs the following steps:
 ## Usage
 
 ```bash
-$ ./assignCommunity/assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output_tag
+$ ./assignCommunity/assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output
 ```
 
 **Parameters**:  
@@ -161,7 +161,7 @@ To classify a plasmid into one of two classes, set `modeltype="Binary"`. The scr
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output_tag -m Binary
+$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output -m Binary
 ```
 
 **Parameters**:  
@@ -183,7 +183,7 @@ To classify a plasmid into one of three classes, set `modeltype="ThreeClass"`. T
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output_tag -m ThreeClass
+$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output -m ThreeClass
 ```
 
 **Output**:  
