@@ -34,7 +34,8 @@ install.packages(c("readr", "readxl", "tidymodels", "tidyverse", "Biostrings", "
 ### 4. Data Availability:​​
 - **The comprehensive database containing 7,232 complete plasmid sequences of Klebsiella pneumoniae has been deposited in the ScienceDB platform (https://www.science-db.cn/).**:  All data are publicly accessible via (https://cstr.cn/31253.47.sciencedb.23175.011A8CD2) under an open-access license (GNU GPL).
 - **Pre-trained Models**: Ensure the following pre-trained models are available:
-- 'binaryModel.Rdata': for binary classification.
+'binaryModel.Rdata': for binary classification.
+
 'threeClassModel.Rdata': for three-class classification.
 - **Reference Protein Database**: Provide a reference protein database (model3.fasta) for BLAST analysis.
 
