@@ -48,7 +48,7 @@ Place all input files in the correct directories as specified in the documentati
 
 ## Overview
 
-PlasmidCommunity is a software designed for the classification and analysis of plasmid communities based on genomic similarity networks. It provides a robust framework for plasmid classification by setting thresholds for sequence similarity among plasmids, categorizing them accordingly, and constructing networks to predict the ability of each community to acquire new genes. This tool is particularly useful for researchers studying plasmid diversity, horizontal gene transfer, and microbial evolution.
+PlasmidCommunity is a software designed for the classification and analysis of plasmid communities based on genomic similarity networks. It provides a robust framework for plasmid classification by setting thresholds for sequence similarity among plasmids, categorizing them accordingly, and constructing networks to predict the ability of each community to acquire new genes. The modes are provided: Silhouette, getCommunity and pan. This tool is particularly useful for researchers studying plasmid diversity, horizontal gene transfer, and microbial evolution.
 
 The software is based on the methodology described in our paper, with minor modifications to enhance user-friendliness. For detailed information, please refer to the documentation.
 
@@ -60,50 +60,53 @@ The software is based on the methodology described in our paper, with minor modi
 To display the specific parameters and usage of the software, navigate to the directory containing the plasmid sequences and enter the following command:
 
 ```bash
-$ ./PlasmidCommunity/silhouetteCurve.sh -h
+$ ./PlasmidCommunity/plasmidCommunity.sh -h
 ```
-
+- `-a`: The input_Mode the mode chosen for analysis: silhouetteCurve, getCommunity or pan. 
 This command will provide detailed information on how to use the Silhouette Coefficient module and its parameters.
 
-### 2. Silhouette Coefficient Module
+### 2. Silhouette Coefficient computation (Silhouette mode)
 
 The Silhouette Coefficient module is used to analyze the clustering quality of plasmid communities. To run this module, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/silhouetteCurve.sh --fastani "./fastani_output.txt" --output_tag test
+$ ./PlasmidCommunity/plasmidCommunity.sh -a silhouetteCurve -s input_plasmid_seq -o output_tag
 ```
 
 **Parameters**:  
-- `--fastani`: The absolute path to the file containing the result FastANI.  
-- `--output_tag`: The label for the output result files.  
+- `-a｜getMode`: The input_Mode chosen silhouetteCurve.  
+- `-s｜plasmid_seq`: The input_plasmid_seq the path of a directory containing plasmids genomes.  
+- `-o｜output_tag`: Outputtag the output tag.  
 
-### 3. Obtaining Communities and plotting the network
+### 3. Obtaining Communities and plotting the network (getCommunity mode)
 
 To obtain plasmid communities, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/getCommunity.sh --fastani "treedist" --discutoff 0.13 --membercutoff 5 --output_tag test
+$ ./PlasmidCommunity/plasmidCommunity.sh -a getCommunity -c treedist -d 0.13 -m 5 -o output_tag
 ```
 
 **Parameters**:  
-- `--fastani`: Select the FastANI data.  
-- `--discutoff`: Set the distance threshold for generating plasmid network.  
-- `--membercutoff`: Set the minimum number of plasmids for each community.  
-- `--output_tag`: The label for the output result files.  
+- `-a｜getMode`: The input mode to choose, here is getCommunity.  
+- `-c|fastani`: The fastani result for input, it's the result saved by silhouetteCurve.  
+- `-d|discutoff`: The distance cutoff to generate community.  
+- `-m|membercutoff`: The minimum of community size.  
+- `-o｜output_tag`: The output tag.  
 
-### 4. Pan-Genome Analysis
+### 4. Pan-Genome Analysis (pan mode)
 
 For pan-genome analysis, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/pan.sh --plasmid_seq "./plasmids" --membership_info "./membership_info.txt" --membercutoff 5 --output_tag test
+$ ./PlasmidCommunity/plasmidCommunity.sh -a pan -s input_plasmid_seq -f "./membership_info.txt" -m 5 -o output_tag"
 ```
 
 **Parameters**:  
-- `--plasmid_seq`: The folder containing the plasmid sequences.  
-- `--membership_info`: The text file containing the plasmid and community information.  
-- `--membercutoff`: Set the minimum number of plasmids for each community.  
-- `--output_tag`: The label for the output result files.  
+- `-a|getMode`:The input_Mode chosen pan.  
+- `-s｜plasmid_seq`: The path of a directory containing plasmids genomes.  
+- `-f|membership_info`: The membership file of the network nodes.  
+- `-m|membercutoff`: The minimum of community size.  
+- `-o｜output_tag`: The output tag.  
 
 ---
 
@@ -127,9 +130,9 @@ $ ./assignCommunity/assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q
 ```
 
 **Parameters**:  
-- `--a`: `AllplasmidPath` the path of the directory containing the plasmid genomes.  
-- `--q`: `QueryPlasmidPath` the query plasmid file.  
-- `--o`: `Output_tag` the prefix of the output file.  
+- `-a|allplasmidPath`: The path of the directory containing the plasmid genomes.  
+- `-q|queryPlasmidPath`: The query plasmid file. 
+- `-o|output_tag`: The prefix of the output file. 
 
 Replace `/data/lizhenpeng/wuxinmiao/plasmids` with the path to the directory containing your plasmid database and `/GCA_015356015__CP064244.1.fasta` with the path to your query plasmid.
 
@@ -165,9 +168,9 @@ $ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output -m Binary
 ```
 
 **Parameters**:  
-- `--a`: `InputGenome` the input file in FASTA format.  
-- `--o`: `Output_tag` the prefix of the output file.  
-- `--m`: `ModelType` the model type to be chosen, two types of models can be chosen: `Binary` or `ThreeClass`.  
+- `-a|inputGenome`: The input file in FASTA format.  
+- `-o|output_tag`: The prefix of the output file.  
+- `-m|modelType`: The model type to be chosen, two types of models can be chosen: `Binary` or `ThreeClass`.  
 
 **Output**:  
 The prediction results will be saved in a file named `modelmerge_prediction_2class.txt`.
