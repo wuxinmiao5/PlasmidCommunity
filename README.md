@@ -62,7 +62,6 @@ To display the specific parameters and usage of the software, navigate to the di
 ```bash
 $ ./PlasmidCommunity/plasmidCommunity.sh -h
 ```
-- `-a`: The input_Mode the mode chosen for analysis: silhouetteCurve, getCommunity or pan. 
 This command will provide detailed information on how to use the Silhouette Coefficient module and its parameters.
 
 ### 2. Silhouette Coefficient computation (Silhouette mode)
