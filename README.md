@@ -163,7 +163,7 @@ To classify a plasmid into one of two classes, set `modeltype="Binary"`. The scr
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output -m Binary
+$ ./PlasmidTransModel/PlasmidTransModel.sh -a inputGenome -o output -m Binary
 ```
 
 **Parameters**:  
@@ -185,7 +185,7 @@ To classify a plasmid into one of three classes, set `modeltype="ThreeClass"`. T
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/plasmidTransModel.sh -a inputGenome -o output -m ThreeClass
+$ ./PlasmidTransModel/PlasmidTransModel.sh -a inputGenome -o output -m ThreeClass
 ```
 
 **Output**:  
