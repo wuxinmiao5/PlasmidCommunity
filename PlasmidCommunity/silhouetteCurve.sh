@@ -12,18 +12,15 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-#echo ARGS=[$ARGS]
-#将规范化后的命令行参数分配至位置参数（$1,$2,...)
 eval set -- "${ARGS}"
-#echo formatted parameters=[$@]
 
 while true
 do
     case "$1" in
 	-h|--help)
-        echo "Usage: cutoffselection.sh -p prefix -t treefile"
-	    echo "-p|--prefix the prefix of the output file"
-	    echo "-t|--treefile the input treefile, the treefile should be nwk format"
+      echo "Usage: 2.silhouetteCurve.sh -a fastani -o output_tag"
+	    echo "-a|--fastani the path of the directory containg the plasmid genomes"
+	    echo "-o|--output_tag the tag of output file"
 	    exit 1
 	    ;;
         -a|--fastani)
@@ -46,7 +43,7 @@ do
             ;;
     esac
 done
+##
 #
-
-getbase=dirname $0
+getbase=`dirname $0`
 Rscript ${getbase}/silhouetteCurve.R $forfastani $foroutput_tag

@@ -7,7 +7,7 @@
 #-l或--long选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
 #-n选项 后接选项解析错误时提示的脚本名字
 ARGS=`getopt -o ha:d:m:o: --long fastani:,discutoff:,membercutoff:,output_tag: -n "$0" -- "$@"`
-if [ $? != 0 ]; then
+if [ $? != 0 ]; then4
     echo "Terminating..."
     exit 1
 fi
@@ -60,5 +60,5 @@ do
 done
 #
 
-getbase=dirname $0
+getbase=`dirname $0`
 Rscript ${getbase}/getCommunity.R $forfastani $fordiscutoff $formembercutoff $foroutput_tag

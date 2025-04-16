@@ -1,6 +1,6 @@
 #setwd("/disk/lizhenpeng/test")
 library(seqinr)
-allfilepath=list.files("./plasmids",full.names=T)
+allfilepath=list.files(input_plasmid_seq,full.names=T)
 mergefiles=function(xxx,forname){
     filenamed=paste(forname,"fasta",sep=".")
     file.create(filenamed)
@@ -39,7 +39,7 @@ for(i in 1:length(cdsfiles)){
     aatrans=rev(strsplit(cdsfiles[i],split="\\/")[[1]])[1]
     redfasta=read.fasta(cdsfiles[i],as.string=T)
     getid=strsplit(aatrans,split="\\.")[[1]][1]
-    print(getid)
+    #print(getid)
     named=append(named,paste(getid,names(redfasta),sep="-"))
     seqed=toupper(as.character(redfasta))
     fileoutnam=paste("./allcds/",aatrans,sep="")

@@ -56,5 +56,5 @@ done
 #
 echo $inputGenome,$output_tag,$modelType
 #
-getbase=dirname $0
+getbase=`dirname $0`
 Rscript ${getbase}/PlasmidTransModel.R $inputGenome $output_tag $modelType

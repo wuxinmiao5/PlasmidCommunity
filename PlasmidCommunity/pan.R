@@ -1,9 +1,12 @@
 allparas=commandArgs()
+getpathindex=grep("^--file=",allparas)
+getpath=gsub("^--file=", "", allparas[getpathindex])
+getbasepathsub=dirname(getpath)
 input_plasmid_seq=allparas[6]
 input_membership=allparas[7]
 membercutoff=allparas[8]
-sampleTimes=allparas[9]
-outputtag=allparas[10]
+#sampleTimes=allparas[9]
+outputtag=allparas[9]
 library(vegan)
 library(readr)
 library(readxl)
@@ -14,10 +17,10 @@ than100=names(table(qbxx$membership))[table(qbxx$membership)>=membercutoff]
 #df0=qbxx%>%filter(membership%in%than100)
 membershipUnique=than100
 #########遍历所有社区的new gene
-source("heatmap.full.genome.pipeline.R")
+source(sprintf("%s/heatmap.full.genome.pipeline.R",getbasepathsub))
 #folders=list.files("/data/lizhenpeng/wuxinmiao/again/a_diversity_more10goups/roary_than10/", full.names = TRUE)  
 folders=amat
-runtimes=sampleTimes
+runtimes=100
 comlist=list()
 for (community_name in membershipUnique){
   # 获取当前文件夹的名称，对应于社区的名称 
@@ -32,7 +35,7 @@ for (community_name in membershipUnique){
   #new gene 行为基因，列为菌株
   kkkmat_new=matrix(NA,runtimes,allstrainnum)
   for(cc in 1:runtimes){
-    print(c("cc",cc))
+    #print(c("cc",cc))
     genomeselect=sample(allstrains)
     allgenearray_new=rep(NA,times=allstrainnum)
     prepan=rep(0,times=dim(fff)[1])
@@ -139,7 +142,7 @@ for(j in 1:length(comlist)){
   ##pdf("test.pdf")
   fordata=data.frame(new_x,new_y)
   ppp[[j]]=ggplot(fordata) +  
-    geom_line(aes( x = new_x, y = new_y),size=1,colour="#E04832",linetype = "solid")+
+    geom_line(aes( x = new_x, y = new_y),linewidth=1,colour="#E04832",linetype = "solid")+
     #geom_pointrange(data=dataf_new,aes(x = StrainNumber, y = Median_new, ymin = Percent2.5_new, ymax = Percent97.5_new),col="dodgerblue",fill ="dodgerblue4", alpha = 0.3, size = 0.04)+
     #geom_pointdensity(data = df_new,aes(x =StrainNumber, y = yaxis_O1_new0) ,size = 0.5,pch=19,adjust = 5)+    
     #scale_color_gradient(low = "lightblue", high = "darkblue") + # 定义颜色渐变  
