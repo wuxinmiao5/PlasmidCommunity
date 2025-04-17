@@ -12,33 +12,38 @@ If you have any inquiries, questions, bug reports, or other feedback, please con
 We appreciate your feedback and are committed to improving PlasmidCommunity to better serve the research community.
 
 ---
-## Prerequisites
+## Installation
 
 Before using PlasmidCommunity, ensure that you have the following prerequisites installed and configured:
 
 ### 1. System Requirements
 - **Linux Environment**: The software is designed to run on a Linux-based operating system. Familiarity with the Linux command line is required.
-
-### 2. R Environment 
+### 2. Source installation
+This will install the latest version direct from Github.
+- **git clone https://github.com/wuxinmiao5/PlasmidCommunity.git**
+####  R Environment
 - **R Programming Language**: Install R on your system. Basic knowledge of R is necessary for certain parts of the analysis.
 - **Required R Packages**: Install the necessary R packages using the following commands: 
 ```R
 install.packages(c("readr", "readxl", "tidymodels", "tidyverse", "Biostrings", "seqinr"))
 ```
-
-### 3. External Tools
+####  External Tools
 - **FastANI**: Ensure fastANI is installed and accessible in your system’s PATH. It is used for sequence similarity analysis.
 - **Prodigal**: Install Prodigal for gene prediction. Download and install from Prodigal GitHub.
 - **BLAST**: Install BLAST for sequence alignment. Download and install from NCBI BLAST.
-
-### 4. Data Availability:​​
+### 3. Conda installation
+```bash
+conda create -n plasmidcommunity -c bioconda -c conda-forge plasmidcommunity
+```
+---
+## Data Availability:​​
 - **The comprehensive database containing 7,232 complete plasmid sequences of Klebsiella pneumoniae has been deposited in the ScienceDB platform (https://www.science-db.cn/).**  All data are publicly accessible via (https://cstr.cn/31253.47.sciencedb.23175.011A8CD2) under an open-access license (GNU GPL).
 - **Pre-trained Models.** Ensure the following pre-trained models are available:
 'binaryModel.Rdata' for binary classification.
 'threeClassModel.Rdata' for three-class classification.
 - **Reference Protein Database**: Provide a reference protein database (model3.fasta) for BLAST analysis.
 
-### Key Notes:
+## Key Notes:
 Ensure all tools are properly installed and accessible in your system’s PATH.
 Place all input files in the correct directories as specified in the documentation.
 
