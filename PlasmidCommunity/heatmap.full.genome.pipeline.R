@@ -66,7 +66,6 @@ match02=paste(aa02$V2,aa02$V1,sep="")
 bothck=match01%in%match02
 aaf=aa[bothck,]
 #
-#cdsgrepget=list.files("/datapool/NAS01-2/lizhenpeng/VFDB/biotype.classifier/strainscds",full.names=T)
 nams=list.files("./allcds/")
 nams02=sapply(nams,function(xxx)strsplit(xxx,split="\\.")[[1]][1],USE.NAMES=F)
 nams03=paste(nams02,"-",sep="")
@@ -83,20 +82,3 @@ rownames(amat)=nams02
 colnames(amat)=linetag
 #write.table(amat,"huihui.heatmap.fullgenome02.txt",sep="\t",quote=F)
 save(amat,file="amat")
-#on windows
-#amat=read.table("phage.heatmap.fullgenome.txt",sep="\t",header=T)
-#amat_distance=dist(amat)
-#amat_distance02=as.matrix(amat_distance)
-library(pheatmap)
-library(RColorBrewer)
-library(gplots)
-#pdf("heatmap.full.pdf",6,6,onefile=F)
-load("amat")
-png("heatmap.0822.png",30,30,units="in",res=300)
-#scolors=colorpanel(100, low="red",mid="blue",high="white")
-scolors=colorRampPalette(c("steelblue", "white", "firebrick3"))(50)
-pheatmap(amat,show_colnames=FALSE,col=scolors,border_color="white",fontsize_row=12,fontsize_col=0.5,treeheight_row=60,treeheight_col=60,pointsize=24)
-dev.off()
-#pheatmap(amat_distance02,show_colnames=T,col=scolors,border_color="white")
-
-#pheatmap(amat,show_colnames=T)

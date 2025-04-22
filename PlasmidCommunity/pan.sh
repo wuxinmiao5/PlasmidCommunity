@@ -1,4 +1,4 @@
-ARGS=`getopt -o hp:i:m:o: --long input_plasmid_seq:,input_membership:,membercutoff:,output_tag: -n "$0" -- "$@"`
+ARGS=`getopt -o hp:i:m:o: --long help,input_plasmid_seq:,input_membership:,membercutoff:,output_tag: -n "$0" -- "$@"`
 if [ $? != 0 ]; then
     echo "Terminating..."
     exit 1
@@ -15,7 +15,7 @@ do
 	    echo "-i|--input_membership the membership file of the network nodes"
 	    echo "-m|--membershipcutoff the minimum of community size"
 	    echo "-o|--outputtag the output tag"
-	    exit 1
+	    exit 0
 	    ;;
         -p|--input_plasmid_seq)
 	    forinput_plasmid_seq=$2
@@ -44,6 +44,6 @@ do
     esac
 done
 #
-getbase=`dirname $0`
+getbase=`dirname $(which $0)`
 Rscript ${getbase}/pan.R $forinput_plasmid_seq $forinput_membership $formembercutoff $foroutput_tag
 

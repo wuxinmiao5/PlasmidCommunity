@@ -6,7 +6,7 @@
 #其中-a选项不接参数，-b选项后必须接参数，-c选项的参数为可选的
 #-l或--long选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
 #-n选项 后接选项解析错误时提示的脚本名字
-ARGS=`getopt -o ha:o:m: --long inputGenome:,output_tag:,modelType: -n "$0" -- "$@"`
+ARGS=`getopt -o ha:o:m: --long help,inputGenome:,output_tag:,modelType: -n "$0" -- "$@"`
 if [ $? != 0 ]; then
     echo "Terminating..."
     exit 1
@@ -26,7 +26,7 @@ do
 	    echo "-o|--output_tag the prefix of the output file"
 	    echo "-m|--modelType the model type to be choosen, 
 	    		  two types of models can be choosen: Binary or ThreeClass"
-	    exit 1
+	    exit 0
 	    ;;
         -a|--inputGenome)
             #echo "Option a";
@@ -56,5 +56,5 @@ done
 #
 echo $inputGenome,$output_tag,$modelType
 #
-getbase=`dirname $0`
+getbase=`dirname $(which $0)`
 Rscript ${getbase}/PlasmidTransModel.R $inputGenome $output_tag $modelType

@@ -3,11 +3,10 @@ library(tidyverse)
 library(Biostrings)
 library(seqinr)
 allparas=commandArgs(trailingOnly = FALSE)
-getpathindex=grep("^--file=",allparas)
-getpath=gsub("^--file=", "", allparas[getpathindex])
-#print(getpath)
-getbasepath01=dirname(getpath)
-getbasepath=dirname(getbasepath01)
+#getpathindex=grep("^--file=",allparas)
+#getpath=gsub("^--file=", "", allparas[getpathindex])
+getdir=dirname(Sys.which("PlasmidTransModel.R"))
+getdir0=dirname(getdir)
 #inputgenome="GCA_015356015__CP064244.1.fasta"
 #outputnam="modelmerge"
 inputgenome=allparas[6]
@@ -15,7 +14,7 @@ outputnam=allparas[7]
 #modeltype=c("Binary","ThreeClass")
 modeltype=allparas[8]
 if(modeltype=="Binary"){
-	load(sprintf("%s/data/binaryModel.Rdata",getbasepath))
+	load(sprintf("%s/data/binaryModel.Rdata",getdir0))
 	user_file=readDNAStringSet(filepath =inputgenome,format="fasta")
 	pentamer_freq=as.data.frame(oligonucleotideFrequency(user_file, width=5,as.prob= TRUE, with.labels = T))
 	pentamer_freq=pentamer_freq%>%mutate(plasmids=names(user_file))%>%select(plasmids,everything())
@@ -29,7 +28,7 @@ if(modeltype=="Binary"){
 	pre=augment(newfit,modelinput)
 	write_tsv(pre,sprintf("%s_prediction_2class.txt",outputnam))
 }else{
-  load(sprintf("%s/data/threeClassModel.Rdata",getbasepath))
+  load(sprintf("%s/data/threeClassModel.Rdata",getdir0))
 	genefeature=c("group_13847","group_1599","group_5662","group_13427")
 	kmerfeature=c("CAGGC" , "ACAGA" , "GACGC" , "GGCCG" ,"AGAGA" ,"CTCCG" ,"CTCTT",
 	"ACATC" ,"CTGGT", "GCGGC"   ,"TTGTT"  , "CCGGT", "TCAGC" ,"GAAGG")

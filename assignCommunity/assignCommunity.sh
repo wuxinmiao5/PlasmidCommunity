@@ -1,4 +1,4 @@
-ARGS=`getopt -o ha:q:o: --long allplasmidPath:,queryPlasmidPath:,output_tag: -n "$0" -- "$@"`
+ARGS=`getopt -o ha:q:o: --long help,allplasmidPath:,queryPlasmidPath:,output_tag: -n "$0" -- "$@"`
 if [ $? != 0 ]; then
     echo "Terminating..."
     exit 1
@@ -14,7 +14,7 @@ do
 	    echo "-a|--allplasmidPath the path of the directory containg the plasmid genomes"
 	    echo "-q|--queryPlasmidPath the query plasmid file"
 	    echo "-o|--output_tag the prefix of the output file"
-	    exit 1
+	    exit 0
 	    ;;
         -a|--allplasmidPath)
             #echo "Option a";
@@ -42,7 +42,7 @@ do
     esac
 done
 #
-getbase=`dirname $0`
+getbase=`dirname $(which $0)`
 Rscript ${getbase}/assignCommunity.R $forallplasmidPath $forqueryPlasmidPath $foroutput_tag
 
 

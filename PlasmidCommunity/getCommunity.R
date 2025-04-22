@@ -6,9 +6,9 @@ library(ggraph)
 library(qgraph)
 library(tidygraph)
 allparas=commandArgs()
-getpathindex=grep("^--file=",allparas)
-getpath=gsub("^--file=", "", allparas[getpathindex])
-getbasepathsub=dirname(getpath)
+#getpathindex=grep("^--file=",allparas)
+#getpath=gsub("^--file=", "", allparas[getpathindex])
+#getbasepathsub=dirname(getpath)
 input_fastani=allparas[6]
 discutoff=allparas[7]
 membercutoff=allparas[8]
@@ -69,4 +69,4 @@ pcore=ggraph(qqq02,layout=forlayout)+
 print(pcore)
 dev.off()
 
-source(sprintf("%s/subNetwork.R",getbasepathsub))
+source(Sys.which("subNetwork.R"))

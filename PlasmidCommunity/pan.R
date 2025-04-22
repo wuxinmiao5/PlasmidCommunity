@@ -16,8 +16,8 @@ qbxx=read_tsv(input_membership)
 than100=names(table(qbxx$membership))[table(qbxx$membership)>=membercutoff]
 #df0=qbxx%>%filter(membership%in%than100)
 membershipUnique=than100
-#########遍历所有社区的new gene
-source(sprintf("%s/heatmap.full.genome.pipeline.R",getbasepathsub))
+#########遍历所有社区的new gene)
+source(Sys.which("heatmap.full.genome.pipeline.R"))
 #folders=list.files("/data/lizhenpeng/wuxinmiao/again/a_diversity_more10goups/roary_than10/", full.names = TRUE)  
 folders=amat
 runtimes=100

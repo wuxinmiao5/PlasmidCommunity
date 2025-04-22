@@ -14,7 +14,7 @@ input_fastani=allparas[6]
 outputtag=allparas[7]
 system("rm -rf plasmids.txt")
 system(sprintf("ls %s/*|grep .*fasta >>plasmids.txt",input_fastani))
-system("/home/dell/anaconda3/bin/conda run -n fastani fastANI --ql plasmids.txt --rl plasmids.txt -o fastani_output.txt --matrix --minFraction 0.8 -t 50")
+system("fastANI --ql plasmids.txt --rl plasmids.txt -o fastani_output.txt --matrix --minFraction 0.8 -t 50")
 
 aaa=read_tsv("./fastani_output.txt",col_names=FALSE)
 qq=c()

@@ -1,4 +1,4 @@
-ARGS=`getopt -o ha:s:c:d:m:f:o: --long getMode:,plasmid_seq:,fastani:,discutoff:,membercutoff:,membership_info:,output_tag: -n "$0" -- "$@"`
+ARGS=`getopt -o ha:s:c:d:m:f:o: --long help,getMode:,plasmid_seq:,fastani:,discutoff:,membercutoff:,membership_info:,output_tag: -n "$0" -- "$@"`
 if [ $? != 0 ]; then
     echo "Terminating..."
     exit 1
@@ -35,7 +35,7 @@ do
       echo "-m|--membershipcutoff the minimum of community size"
       echo "-o|--outputtag the output tag"
 		  echo -e "\n"     	   
-	    exit 1
+	    exit 0
 	    ;;
         -a|--getMode)
 	    forgetMode=$2
@@ -76,12 +76,12 @@ do
     esac
 done
 #
-getbase=`dirname $0`
-if [ $forgetMode = "silhouetteCurve" ]; then
+getbase=`dirname $(which $0)`
+if [ "$forgetMode" = "silhouetteCurve" ]; then
 	Rscript ${getbase}/plasmidCommunity.R $forgetMode $forplasmid_seq $foroutput_tag
-elif [ $forgetMode = "getCommunity" ]; then
+elif [ "$forgetMode" = "getCommunity" ]; then
   Rscript ${getbase}/plasmidCommunity.R $forgetMode $forfastani $fordiscutoff $formembercutoff $foroutput_tag 
-elif [ $forgetMode = "pan" ]; then
+elif [ "$forgetMode" = "pan" ]; then
 	Rscript ${getbase}/plasmidCommunity.R $forgetMode $forplasmid_seq $formembership_info $formembercutoff $foroutput_tag
 fi
 
