@@ -12,33 +12,53 @@ If you have any inquiries, questions, bug reports, or other feedback, please con
 We appreciate your feedback and are committed to improving PlasmidCommunity to better serve the research community.
 
 ---
-## Prerequisites
+## Installation
 
 Before using PlasmidCommunity, ensure that you have the following prerequisites installed and configured:
 
 ### 1. System Requirements
 - **Linux Environment**: The software is designed to run on a Linux-based operating system. Familiarity with the Linux command line is required.
 
-### 2. R Environment 
+### 2. Source installation
+This will install the latest version direct from Github.
+- **git clone https://github.com/wuxinmiao5/PlasmidCommunity.git**
+- **Add environment variables to bashrc**
+ ```bash
+~/.bashrc
+```
+- **Add paths related to PlasmidCommunity**
+```bash 
+export PATH=${PATH}:/path/to/PlasmidCommunity/assignCommunity
+export PATH=${PATH}:/path/to/PlasmidCommunity/PlasmidCommunity
+export PATH=${PATH}:/path/to/PlasmidCommunity/PlasmidTransModel
+```
+- **Make the environment variables effective**
+```bash 
+source ~/.bashrc
+```
+####  R Environment
 - **R Programming Language**: Install R on your system. Basic knowledge of R is necessary for certain parts of the analysis.
 - **Required R Packages**: Install the necessary R packages using the following commands: 
 ```R
 install.packages(c("readr", "readxl", "tidymodels", "tidyverse", "Biostrings", "seqinr"))
 ```
-
-### 3. External Tools
+####  External Tools
 - **FastANI**: Ensure fastANI is installed and accessible in your system’s PATH. It is used for sequence similarity analysis.
 - **Prodigal**: Install Prodigal for gene prediction. Download and install from Prodigal GitHub.
 - **BLAST**: Install BLAST for sequence alignment. Download and install from NCBI BLAST.
-
-### 4. Data Availability:​​
+### 3. Conda installation
+```bash
+conda create -n plasmidcommunity -c bioconda -c conda-forge plasmidcommunity
+```
+---
+## Data Availability:​​
 - **The comprehensive database containing 7,232 complete plasmid sequences of Klebsiella pneumoniae has been deposited in the ScienceDB platform (https://www.science-db.cn/).**  All data are publicly accessible via (https://cstr.cn/31253.47.sciencedb.23175.011A8CD2) under an open-access license (GNU GPL).
 - **Pre-trained Models.** Ensure the following pre-trained models are available:
 'binaryModel.Rdata' for binary classification.
 'threeClassModel.Rdata' for three-class classification.
 - **Reference Protein Database**: Provide a reference protein database (model3.fasta) for BLAST analysis.
 
-### Key Notes:
+## Key Notes:
 Ensure all tools are properly installed and accessible in your system’s PATH.
 Place all input files in the correct directories as specified in the documentation.
 
@@ -60,7 +80,7 @@ The software is based on the methodology described in our paper, with minor modi
 To display the specific parameters and usage of the software, navigate to the directory containing the plasmid sequences and enter the following command:
 
 ```bash
-$ ./PlasmidCommunity/plasmidCommunity.sh -h
+$ plasmidCommunity.sh -h
 ```
 This command will provide detailed information on how to use the Silhouette Coefficient module and its parameters.
 
@@ -69,7 +89,7 @@ This command will provide detailed information on how to use the Silhouette Coef
 The Silhouette Coefficient module is used to analyze the clustering quality of plasmid communities. To run this module, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/plasmidCommunity.sh -a silhouetteCurve -s input_plasmid_seq -o output_tag
+$ plasmidCommunity.sh -a silhouetteCurve -s input_plasmid_seq -o output_tag
 ```
 
 **Parameters**:  
@@ -82,7 +102,7 @@ $ ./PlasmidCommunity/plasmidCommunity.sh -a silhouetteCurve -s input_plasmid_seq
 To obtain plasmid communities, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/plasmidCommunity.sh -a getCommunity -c treedist -d 0.13 -m 5 -o output_tag
+$ plasmidCommunity.sh -a getCommunity -c treedist -d 0.13 -m 5 -o output_tag
 ```
 
 **Parameters**:  
@@ -97,7 +117,7 @@ $ ./PlasmidCommunity/plasmidCommunity.sh -a getCommunity -c treedist -d 0.13 -m 
 For pan-genome analysis, use the following command:
 
 ```bash
-$ ./PlasmidCommunity/plasmidCommunity.sh -a pan -s input_plasmid_seq -f "./membership_info.txt" -m 5 -o output_tag"
+$ plasmidCommunity.sh -a pan -s input_plasmid_seq -f "./membership_info.txt" -m 5 -o output_tag"
 ```
 
 **Parameters**:  
@@ -125,7 +145,7 @@ The tool performs the following steps:
 ## Usage
 
 ```bash
-$ ./assignCommunity/assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output
+$ assignCommunity.sh -a /data/lizhenpeng/wuxinmiao/plasmids -q GCA_015356015__CP064244.1.fasta -o output
 ```
 
 **Parameters**:  
@@ -163,7 +183,7 @@ To classify a plasmid into one of two classes, set `modeltype="Binary"`. The scr
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/PlasmidTransModel.sh -a inputGenome -o output -m Binary
+$ PlasmidTransModel.sh -a inputGenome -o output -m Binary
 ```
 
 **Parameters**:  
@@ -185,7 +205,7 @@ To classify a plasmid into one of three classes, set `modeltype="ThreeClass"`. T
 **Example Command**:
 
 ```bash
-$ ./PlasmidTransModel/PlasmidTransModel.sh -a inputGenome -o output -m ThreeClass
+$ PlasmidTransModel.sh -a inputGenome -o output -m ThreeClass
 ```
 
 **Output**:  
