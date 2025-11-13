@@ -40,7 +40,7 @@ source ~/.bashrc
 - **R Programming Language**: Install R on your system. Basic knowledge of R is necessary for certain parts of the analysis.
 - **Required R Packages**: Install the necessary R packages using the following commands: 
 ```R
-install.packages(c("readr", "readxl", "writexl","tidymodels", "tidyverse", "Biostrings", "seqinr","ape","dplyr","igraph","ggraph","tidygraph","ggplot2","vegan"))
+install.packages(c("readr", "readxl", "writexl","tidymodels", "tidyverse", "Biostrings", "seqinr","ape","dplyr","igraph","ggraph","tidygraph","ggplot2","vegan","ranger"))
 ```
 ####  External Tools
 - **FastANI**: Ensure fastANI is installed and accessible in your system’s PATH. It is used for sequence similarity analysis.
